@@ -1,6 +1,27 @@
-// SPDX-License-Identifier: Unlicense
-pragma solidity >=0.8.0;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity 0.8.11;
 
-contract Contract {
-    string public greet = "Hello World!";
+contract Contract{
+
+    error AlreadyInitialized();
+
+    bool initialized = false;
+
+    uint256 z;
+
+    constructor(){
+    }
+
+    function init() external {
+        if(initialized) {
+            revert AlreadyInitialized();
+        }
+        initialized = true;
+    }
+
+    function func1(uint256 _z) external returns(uint256) {
+        z = _z;
+        return z;
+    }
+
 }
